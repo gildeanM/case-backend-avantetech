@@ -8,8 +8,8 @@ class CategoryController {
 
     async create(req, res){
         const bodySchema = z.object({
-            name: z.string().trim().max(100, {error: "O nome deve conter no máximo 100 caracteres."}),
-            description: z?.string().max(255, {error: "A descrição deve conter no máximo 255 caracteres."})
+            name: z.string().trim().max(100, {error: "The name must contain a maximum of 100 characters."}),
+            description: z?.string().max(255, {error: "The description should contain a maximum of 255 characters."})
         });
 
         const {name, description} = bodySchema.parse(req.body);
