@@ -1,9 +1,9 @@
 const express = require("express");
 const categoryRoutes = express.Router();
 
-const categoryController = require("../controllers/CategoryController.js");
+const CategoryController = require("../controllers/CategoryController.js");
 
-categoryRoutes.post("/categorias", categoryController.create)
-categoryRoutes.get("/categorias", categoryController.list)
-categoryRoutes.put("/categorias/{id}", categoryController.update)
-categoryRoutes.delete("/categorias/{id}", categoryController.delete)
+categoryRoutes.post("/categorias", CategoryController.create)
+categoryRoutes.get("/categorias", CategoryController.list)
+categoryRoutes.put("/categorias/{id}", CategoryController.update)
+categoryRoutes.delete("/categorias/{id}", CategoryController.delete)
