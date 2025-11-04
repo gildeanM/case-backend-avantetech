@@ -1,5 +1,5 @@
 const express = require("express");
-const { PrismaClient } = require("@prisma/client");
+const prisma = require("./db/PrismaClient");
 require("dotenv").config();
 
 const app = express();

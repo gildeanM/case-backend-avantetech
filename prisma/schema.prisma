@@ -19,3 +19,20 @@ model User {
   email     String   @unique
   name      String?
 }
+
+model Produto {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  preco       Decimal
+
+  Categoria   Categoria? @relation(fields: [categoriaId], references: [id], onDelete: Cascade)
+  categoriaId Int?
+}
+
+model Categoria {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  produtos    Produto[]
+}
