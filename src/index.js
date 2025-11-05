@@ -6,9 +6,11 @@ require("express-async-error");
 const PORT = 3000;
 const app = express();
 const categoryRoutes = require("./routes/category-routes");
+const productsRoutes = require("./routes/products-routes");
 
 app.use(express.json());
 app.use("/", categoryRoutes);
+app.use("/", productsRoutes);
 app.use(errorHandling);
 
 

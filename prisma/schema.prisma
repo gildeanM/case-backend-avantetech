@@ -24,15 +24,15 @@ model Produto {
   id          Int     @id @default(autoincrement())
   name        String
   description String?
-  preco       Decimal
+  price       Decimal
 
-  Categoria   Categoria? @relation(fields: [categoriaId], references: [id], onDelete: Cascade)
-  categoriaId Int?
+  Categoria  Categoria? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int?
 }
 
 model Categoria {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
-  produtos    Produto[]
+  products    Produto[]
 }

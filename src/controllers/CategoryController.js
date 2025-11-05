@@ -9,8 +9,8 @@ class CategoryController {
     async create(req, res){
         
         const bodySchema = z.object({
-            name: z.string().trim().max(100, {error: "The name must contain a maximum of 100 characters."}),
-            description: z?.string().max(255, {error: "The description should contain a maximum of 255 characters."}),
+            name: z.string().trim().min(1, {error: "Name is required."}).max(100, {error:"The name must contain a maximum of 100 characters."}),
+            description: z.string().max(255, {error:"The description should contain a maximum of 255 characters."}).optional(),
         
         });
 
@@ -28,7 +28,7 @@ class CategoryController {
                 name,
                 description
             }
-        })
+        });
 
         return res.status(200).json(category);
 
@@ -64,8 +64,8 @@ class CategoryController {
     async update(req, res){
 
         const  bodySchema = z.object({
-            name: z.string().trim().max(100, {error: "The name must contain a maximum of 100 characters."}),
-            description: z?.string().max(255, {error: "The description should contain a maximum of 255 characters."}),        
+            name: z.string().trim().min(1, { error: "Name is required."}).max(100, {error: "The name must contain a maximum of 100 characters."}),
+            description: z?.string().max(255,{error:"The description should contain a maximum of 255 characters."}),        
         });
 
         const categoryId = Number.parseInt(req.params.id);
