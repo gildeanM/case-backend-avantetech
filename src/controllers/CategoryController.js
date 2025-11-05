@@ -4,14 +4,15 @@ const {z} = require("zod");
 
 class CategoryController {
 
-    bodySchema = z.object({
-        name: z.string().trim().max(100, {error: "The name must contain a maximum of 100 characters."}),
-        description: z?.string().max(255, {error: "The description should contain a maximum of 255 characters."}),
-        
-    });
+   
 
     async create(req, res){
         
+        const bodySchema = z.object({
+            name: z.string().trim().max(100, {error: "The name must contain a maximum of 100 characters."}),
+            description: z?.string().max(255, {error: "The description should contain a maximum of 255 characters."}),
+        
+        });
 
         const {name, description} = bodySchema.parse(req.body);
 
@@ -23,8 +24,10 @@ class CategoryController {
             throw new AppError("Category already exists.")
 
         const category = await prisma.categoria.create({
-            name,
-            description
+            data: {
+                name,
+                description
+            }
         })
 
         return res.status(200).json(category);
@@ -41,16 +44,14 @@ class CategoryController {
 
     async delete(req, res){
 
-        const categoryId = z.number({
-            error: "Invalid Id: the id has to be a number."
-        }).parse(req.params.id);
+        const categoryId = Number.parseInt(req.params.id);
 
         const categoryAlreadyDeleted = await prisma.categoria.findFirst({
             where: { id: categoryId }
         });
 
         if(categoryAlreadyDeleted === null)
-            throw new AppError("Category not find.")
+            throw new AppError("Category not find.");
 
         const categoryDeleted = await prisma.categoria.delete({
             where: { id: categoryId } 
@@ -62,9 +63,12 @@ class CategoryController {
 
     async update(req, res){
 
-        const categoryId = z.number({
-            error: "Invalid Id: the id has to be a number."
-        }).parse(req.params.id);
+        const  bodySchema = z.object({
+            name: z.string().trim().max(100, {error: "The name must contain a maximum of 100 characters."}),
+            description: z?.string().max(255, {error: "The description should contain a maximum of 255 characters."}),        
+        });
+
+        const categoryId = Number.parseInt(req.params.id);
 
         const { name, description } = bodySchema.parse(req.body);
 
