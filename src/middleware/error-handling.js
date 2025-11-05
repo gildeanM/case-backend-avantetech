@@ -1,8 +1,6 @@
 const { ZodError, z } = require("zod");
 const AppError = require("../utils/AppError");
 const { Prisma } = require("@prisma/client");
-const e = require("express");
-
 
 
 function errorHandling(err, req, res, next){
@@ -26,4 +24,7 @@ function errorHandling(err, req, res, next){
         });
     }
 
+    return res.status(500).json({message: err.message });
 }
+    
+module.exports = errorHandling;

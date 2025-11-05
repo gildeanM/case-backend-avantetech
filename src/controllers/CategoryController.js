@@ -2,8 +2,6 @@ const prisma = require("../db/PrismaClient");
 const AppError = require("../utils/AppError");
 const {z} = require("zod");
 
-
-
 class CategoryController {
 
     bodySchema = z.object({
@@ -43,7 +41,7 @@ class CategoryController {
 
     async delete(req, res){
 
-        const id = z.number({
+        const categoryId = z.number({
             error: "Invalid Id: the id has to be a number."
         }).parse(req.params.id);
 
@@ -89,3 +87,5 @@ class CategoryController {
     }
     
 }
+
+module.exports = new CategoryController();
