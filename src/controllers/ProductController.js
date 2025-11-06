@@ -19,8 +19,7 @@ class ProductController {
             price: z
                 .coerce
                 .number({
-                    required_error: "The price is required.",
-                    invalid_type_error: "The price has to be a number"
+                    error: "The price has to be a number"
                 })
                 .positive({error: "The price has to grather than 0."}),
             categoryId: z.coerce.number().int().positive()
@@ -93,10 +92,9 @@ class ProductController {
             price: z
                 .coerce
                 .number({
-                    required_error: "The price is required.",
-                    invalid_type_error: "The price has to be a number"
+                    error: "The price has to be a number"
                 })
-                .positive({error: "The price has to grather than 0."}),
+                .positive({error: "The price has to be grather than 0."}),
             categoryId: z.coerce.number().int().positive()
         
         });

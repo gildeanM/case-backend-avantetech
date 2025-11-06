@@ -44,7 +44,7 @@ class CategoryController {
 
     async delete(req, res){
 
-        const categoryId = Number.parseInt(req.params.id);
+        const categoryId = z.coerce.number().int().positive().parse(req.params.id);
 
         const categoryAlreadyDeleted = await prisma.categoria.findFirst({
             where: { id: categoryId }
@@ -68,7 +68,7 @@ class CategoryController {
             description: z?.string().max(255,{error:"The description should contain a maximum of 255 characters."}),        
         });
 
-        const categoryId = Number.parseInt(req.params.id);
+        const categoryId = z.coerce.number().int().positive().parse(req.params.id);
 
         const { name, description } = bodySchema.parse(req.body);
 
