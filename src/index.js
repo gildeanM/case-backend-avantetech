@@ -5,7 +5,7 @@ const errorHandling = require("./middleware/error-handling");
 require("dotenv").config();
 require("express-async-error");
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const categoryRoutes = require("./routes/category-routes");
 const productsRoutes = require("./routes/products-routes");

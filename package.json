@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node src/index.js",
+    "start": "node src/index.js",
     "db:deploy": "npx prisma migrate deploy && npx prisma generate"
   },
   "keywords": [],
