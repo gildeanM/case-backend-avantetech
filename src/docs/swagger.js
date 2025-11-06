@@ -11,8 +11,12 @@ const options = {
     },
     servers: [
         {
-        url: `https://case-backend-avantetech.onrender.com`,
-        description: 'Production server',
+            url: "https://case-backend-avantetech.onrender.com/",
+            description: 'Production server',
+        },
+        {
+            url: `http://localhost:${PORT}`,
+            description: 'Development server',
         },
     ],
     },

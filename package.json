@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node src/index.js",
-    "start": "node src/index.js",
+    "dev": "node --env-file .env src/index.js",
+    "start": "node --env-file .env.prod src/index.js",
     "db:deploy": "npx prisma migrate deploy && npx prisma generate"
   },
   "keywords": [],
