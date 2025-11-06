@@ -12,8 +12,7 @@ An **Express.js + Prisma** backend API for managing **categories** and **product
 - [Local Development](#local-development)
 - [Docker Setup](#docker-setup)
 - [API Documentation](#api-documentation)
-- [Deployment on Render](#deployment-on-render)
-- [License](#license)
+
 
 ---
 
@@ -175,35 +174,3 @@ http://localhost:3000/api-docs
 | DELETE | `/products/:id` | Delete product |
 
 ---
-
-## ☁️ Deployment on Render
-
-### Steps
-1. Push your project to GitHub.  
-2. Create a **New Web Service** in [Render](https://render.com).  
-3. Select your repo and choose **Docker** deployment.  
-4. Add your environment variables:
-   ```env
-   DATABASE_URL=<your Render Postgres URL>
-   NODE_ENV=production
-   PORT=3000
-   ```
-5. Deploy! 🚀  
-
-Render will automatically build and run your container using:
-```bash
-CMD ["sh", "-c", "npm run db:deploy && npm run start"]
-```
-
----
-
-## 🧾 License
-
-Licensed under the **ISC License** — free for learning and customization.
-
----
-
-## 👨‍💻 Author
-
-Developed by **AvanteTech Case Team**  
-Maintained by [Your Name Here]
