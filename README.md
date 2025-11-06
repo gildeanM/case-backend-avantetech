@@ -1,7 +1,7 @@
 # 🛍️ Case Backend AvanteTech
 
 An **Express.js + Prisma** backend API for managing **categories** and **products**, designed for scalable deployment using **Docker Compose** and **Render**.
-## links
+## 🔗 Links
 - [API](https://case-backend-avantetech.onrender.com/)
 - [DOCS](https://case-backend-avantetech.onrender.com/api-docs)
 
