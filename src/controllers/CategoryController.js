@@ -30,7 +30,7 @@ class CategoryController {
             }
         });
 
-        return res.status(200).json(category);
+        return res.status(201).json(category);
 
     }
 

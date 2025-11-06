@@ -10,7 +10,7 @@ class ProductController {
             name: z
                 .string()
                 .trim()
-                .min(1, {error:"Name is required."})
+                .min(1, {message:"Name is required."})
                 .max(100, {error:"The name must contain a maximum of 100 characters."}),
             description: z
                 .string()
@@ -32,10 +32,10 @@ class ProductController {
         const categoryExists = await prisma.categoria.findFirst({ where: { id: categoryId } });
 
         if(productAlreadyExists !== null) 
-            throw new AppError("Product already exists.");
+            throw new AppError("Product already exists.", 404);
 
         if(categoryExists === null) 
-            throw new AppError("Category doesn't exists.");
+            throw new AppError("Category doesn't exists.", 404);
 
         const product = await prisma.produto.create({
             data: {
@@ -46,7 +46,7 @@ class ProductController {
             }
         });
 
-        return res.status(200).json(product);
+        return res.status(201).json(product);
 
     }
 
@@ -67,7 +67,7 @@ class ProductController {
         });
 
         if(productAlreadyDeleted === null)
-            throw new AppError("Product not found.");
+            throw new AppError("Product not found.", 404);
 
         const productDeleted = await prisma.produto.delete({
             where: { id: productId } 
@@ -107,10 +107,10 @@ class ProductController {
         const categoryExists = await prisma.categoria.findFirst({ where: { id: categoryId } });
 
         if(productAlreadyExists === null) 
-            throw new AppError("Product not found.")
+            throw new AppError("Product not found.", 404);
 
         if(categoryExists === null) 
-            throw new AppError("Category not found.")
+            throw new AppError("Category not found.", 404);
 
         const productUpdated = await prisma.produto.update({
             where: { id: productId },
